@@ -1,0 +1,1 @@
+python ..\script\makeimage.py

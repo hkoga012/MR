@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ddscBootloader>
+    <symbols>
+        <symbol name="FSP_BOOTABLE_IMAGE" value="0x00000001"/>
+        <symbol name="RAM_NS_START" value="0x20008000"/>
+        <symbol name="FLASH_NS_START" value="0x00021800"/>
+        <symbol name="FLASH_IMAGE_END" value="0x00021800"/>
+        <symbol name="FLASH_NS_IMAGE_START" value="0x00021800"/>
+        <symbol name="FLASH_NSC_START" value="0x00021800"/>
+        <symbol name="RAM_NSC_START" value="0x20008000"/>
+        <symbol name="FLASH_IMAGE_LENGTH" value="0x0001DF00"/>
+        <symbol name="XIP_SECONDARY_FLASH_IMAGE_END" value="0x0003F800"/>
+        <symbol name="XIP_SECONDARY_FLASH_IMAGE_START" value="0x00021900"/>
+        <symbol name="FLASH_IMAGE_START" value="0x00003900"/>
+        <symbol name="FLASH_IMAGE_START" value="0x00021800" security="n"/>
+        <symbol name="FSP_BOOTABLE_IMAGE" value="0x00000001" security="n"/>
+        <symbol name="FLASH_IMAGE_LENGTH" value="0x00021800" security="n"/>
+    </symbols>
+    <images>
+        <image path="${BuildArtifactFileBaseName}.bin.signed">python ${workspace_loc:mcuboot_ra2l1}/ra/fsp/src/rm_mcuboot_port/rm_mcuboot_port_sign.py sign --header-size 0x100 --align 8 --max-align 8 --slot-size 0x1e000 --max-sectors 60 --overwrite-only  --confirm --pad-header ${BuildArtifactFileName} ${BuildArtifactFileBaseName}.bin.signed</image>
+        <image path="${BuildArtifactFileBaseName}.bin.signed" security="n">python ${workspace_loc:mcuboot_ra2l1}/ra/fsp/src/rm_mcuboot_port/rm_mcuboot_port_sign.py sign --header-size 0x200 --align 8 --max-align 8 --slot-size 0x0 --max-sectors 60 --overwrite-only  --confirm --pad-header ${BuildArtifactFileName} ${BuildArtifactFileBaseName}.bin.signed</image>
+    </images>
+</ddscBootloader>
